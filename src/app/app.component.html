@@ -1,0 +1,29 @@
+<hello name="{{ name }}"></hello>
+<p>
+  Start editing to see some magic happen :)
+</p>
+<div style="text-align:center">
+<h1>Train Seat Booking</h1>
+
+<label for="numSeats">Number of seats to book:</label>
+<input #numSeatsInput type="number" id="numSeats" min="1" max="7" placeholder="Enter seats (1-7)" />
+<button (click)="bookSeats(numSeatsInput.valueAsNumber)">Book Seats</button>
+
+<div *ngIf="bookingResult.length">
+  <h3>Booking Result:</h3>
+  <p *ngFor="let seat of bookingResult">{{ seat }}</p>
+</div>
+
+<h3>Seat Layout</h3>
+<div class="seat-layout">
+  <div *ngFor="let row of seats; let rowIndex = index" class="row">
+    <span
+      *ngFor="let seat of row; let seatIndex = index"
+      class="seat"
+      [ngClass]="{ booked: seat === 1, available: seat === 0 }"
+    >
+      {{ seat === 0 ? 'O' : 'X' }}
+    </span>
+  </div>
+</div>
+</div>
